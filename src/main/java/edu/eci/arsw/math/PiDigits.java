@@ -24,7 +24,35 @@ public class PiDigits {
             throw new RuntimeException("Invalid number of threads");
         }
 
-        return new byte[count];
+        // Paso 2
+        int digitsPerThread = count / N;
+        int remainder = count % N;
+
+        PiDigitsThread[] threads = new PiDigitsThread[N];
+        int currentStart = start;
+
+        for (int i = 0; i < N; i++) {
+            int threadCount = digitsPerThread + (i == N - 1 ? remainder : 0);
+            threads[i] = new PiDigitsThread(currentStart, threadCount);
+            threads[i].start();
+            currentStart += threadCount;
+        }
+
+        // Paso 3
+        byte[] result = new byte[count];
+        int pos = 0;
+        for (int i = 0; i < N; i++) {
+            try {
+                threads[i].join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            byte[] partial = threads[i].getDigits();
+            System.arraycopy(partial, 0, result, pos, partial.length);
+            pos += partial.length;
+        }
+
+        return result;
     }
 
     /**
