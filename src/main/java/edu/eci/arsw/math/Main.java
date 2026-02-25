@@ -14,9 +14,15 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String a[]) {
-        System.out.println(bytesToHex(PiDigits.getDigits(0, 10)));
-        System.out.println(bytesToHex(PiDigits.getDigits(1, 100)));
-        System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
+        // Sin hilos
+        String sinHilos = bytesToHex(PiDigits.getDigits(0, 10));
+        System.out.println("Sin hilos:   " + sinHilos);
+
+        // Con N=2 hilos
+        String conHilos = bytesToHex(PiDigits.getDigits(0, 10, 2));
+        System.out.println("Con 2 hilos: " + conHilos);
+
+        System.out.println("Resultados iguales: " + sinHilos.equals(conHilos));
     }
 
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
