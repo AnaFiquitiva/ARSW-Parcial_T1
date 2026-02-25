@@ -12,6 +12,21 @@ public class PiDigits {
     private static double Epsilon = 1e-17;
 
     
+    // Paso 1
+    public static byte[] getDigits(int start, int count, int N) {
+        if (start < 0) {
+            throw new RuntimeException("Invalid Interval");
+        }
+        if (count < 0) {
+            throw new RuntimeException("Invalid Interval");
+        }
+        if (N <= 0) {
+            throw new RuntimeException("Invalid number of threads");
+        }
+
+        return new byte[count];
+    }
+
     /**
      * Returns a range of hexadecimal digits of pi.
      * @param start The starting location of the range.
