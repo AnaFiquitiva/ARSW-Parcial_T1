@@ -17,6 +17,12 @@ Para este ejercicio se quiere calcular, en el menor tiempo posible, al menos el 
 
 ## ¿Qué se hizo?
 
+### Punto 1 - Clase PiDigitsThread
+
+Se creó la clase `PiDigitsThread` que extiende de `Thread`. Esta clase representa el ciclo de vida de un hilo que calcula una parte de los dígitos de PI. Recibe como parámetros el punto de inicio (`start`) y la cantidad de dígitos a calcular (`count`). Cuando el hilo se ejecuta, llama al método `getDigits` de `PiDigits` con su rango asignado y guarda el resultado para que pueda ser consultado después.
+
+---
+
 ### Punto 2 - Paralelización con N hilos
 
 Se modificó el método getDigits de la clase PiDigits para que recibiera un parámetro adicional N que indica cuántos hilos se van a usar para calcular los dígitos de PI.
